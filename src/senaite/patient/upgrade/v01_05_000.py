@@ -15,13 +15,14 @@
 # this program; if not, write to the Free Software Foundation, Inc., 51
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# Copyright 2020-2024 by it's authors.
+# Copyright 2020-2025 by it's authors.
 # Some rights reserved, see README and LICENSE.
 
 from senaite.core.upgrade import upgradestep
 from senaite.core.upgrade.utils import UpgradeUtils
 from senaite.patient import logger
 from senaite.patient.config import PRODUCT_NAME
+from senaite.patient.setuphandlers import setup_catalog_mappings
 from senaite.patient.setuphandlers import setup_catalogs
 
 version = "1.5.0"
@@ -69,3 +70,10 @@ def import_registry(tool):
     setup = portal.portal_setup
     setup.runImportStepFromProfile(profile, "plone.app.registry")
     logger.info("Reimport registry tool [DONE]")
+
+
+def update_catalog_mappings(tool):
+    """Updates the catalog mappings of senaite registry
+    """
+    portal = tool.aq_inner.aq_parent
+    setup_catalog_mappings(portal)

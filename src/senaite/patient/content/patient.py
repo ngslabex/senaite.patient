@@ -15,7 +15,7 @@
 # this program; if not, write to the Free Software Foundation, Inc., 51
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# Copyright 2020-2024 by it's authors.
+# Copyright 2020-2025 by it's authors.
 # Some rights reserved, see README and LICENSE.
 
 from string import Template
@@ -438,6 +438,9 @@ class IPatientSchema(model.Schema):
 class Patient(Container):
     """Results Interpretation Template content
     """
+
+    # XXX Remove after 1.5.0
+    #     See https://github.com/senaite/senaite.patient/pull/119
     _catalogs = [PATIENT_CATALOG]
 
     security = ClassSecurityInfo()
